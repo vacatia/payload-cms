@@ -1,6 +1,6 @@
-import { buildConfig } from 'payload/config'
+import { buildConfig } from 'payload'
 import path from 'path'
-import PostgresAdapter from '@payloadcms/db-postgres'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { slateEditor } from '@payloadcms/richtext-slate'
 
 import Regions from './collections/Regions'
@@ -34,8 +34,10 @@ export default buildConfig({
     'http://localhost:8001',
     'http://localhost:3000',
   ],
-  db: new PostgresAdapter({
-    url: databaseUri,
+  db: postgresAdapter({
+    pool: {
+      connectionString: databaseUri,
+    },
   }),
   editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key-change-this-in-production',
