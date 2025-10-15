@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: payload-postgres
+    environment:
+      POSTGRES_USER: search_poc
+      POSTGRES_PASSWORD: search_poc_pass
+      POSTGRES_DB: payload_cms
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - payload-network
+
+  payload:
+    build: .
+    container_name: payload-cms
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URI: postgresql://search_poc:search_poc_pass@postgres:5432/payload_cms
+      PAYLOAD_SECRET: your-secret-key-change-this-in-production
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "4001:3000"
+    networks:
+      - payload-network
+
+volumes:
+  postgres_data:
+
+networks:
+  payload-network:
+    driver: bridge
