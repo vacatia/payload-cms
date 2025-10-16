@@ -1,8 +1,9 @@
 import { buildConfig } from 'payload'
 import path from 'path'
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
+import Users from './collections/Users'
 import Regions from './collections/Regions'
 import Properties from './collections/Properties'
 import Amenities from './collections/Amenities'
@@ -17,6 +18,7 @@ export default buildConfig({
     user: 'users',
   },
   collections: [
+    Users,
     Regions,
     Properties,
     Amenities,
@@ -38,8 +40,9 @@ export default buildConfig({
     pool: {
       connectionString: databaseUri,
     },
+    push: true, // Auto-create/update database schema
   }),
-  editor: slateEditor({}),
+  editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key-change-this-in-production',
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
