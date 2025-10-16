@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgis/postgis:16-3.4
@@ -12,14 +10,22 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - payload-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U search_poc -d payload_cms"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   payload:
     build: .
     container_name: payload-cms
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       DATABASE_URI: postgresql://search_poc:search_poc_pass@postgres:5432/payload_cms
       PAYLOAD_SECRET: your-secret-key-change-this-in-production

@@ -9,11 +9,14 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build the project
+# Build Next.js app (which will output to .next)
 RUN npm run build
 
 # Expose port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+# Set production environment
+ENV NODE_ENV=production
+
+# Start the application using tsx to handle TypeScript and ESM
+CMD ["npx", "tsx", "src/server.ts"]
