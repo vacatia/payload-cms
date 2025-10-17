@@ -25,6 +25,10 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@payload-config": ["./src/payload.config.ts"]
+    },
     "plugins": [
       {
         "name": "next"

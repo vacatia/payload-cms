@@ -1,19 +1,23 @@
 {
   "name": "payload-cms",
   "version": "1.0.0",
-  "description": "Payload CMS v3 with custom Express server",
+  "description": "Payload CMS v3 with Next.js App Router",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && tsc src/server.ts --outDir . --module commonjs --target es2020 --esModuleInterop --skipLibCheck",
-    "start": "node server.js",
-    "payload": "payload"
+    "build": "next build",
+    "start": "next start",
+    "payload": "payload",
+    "generate:importmap": "payload generate:importmap",
+    "generate:types": "payload generate:types"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.59.1",
     "@payloadcms/next": "^3.59.1",
     "@payloadcms/richtext-lexical": "^3.59.1",
+    "@payloadcms/ui": "^3.59.1",
     "dotenv": "^17.2.3",
     "express": "^4.21.1",
+    "graphql": "^16.11.0",
     "next": "^15.2.3",
     "payload": "^3.59.1",
     "pg": "^8.16.3",

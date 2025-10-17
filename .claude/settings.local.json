@@ -24,7 +24,12 @@
       "Bash(cat:*)",
       "Bash(curl:*)",
       "Bash(pkill:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Read(//tmp/payload/templates/blank/src/app/(payload)/api/[...slug]/**)",
+      "Read(//private/tmp/payload/templates/blank/src/app/**)",
+      "Bash(xargs:*)",
+      "Read(//tmp/payload/templates/blank/**)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
