@@ -13,6 +13,14 @@ const Properties: CollectionConfig = {
   },
   fields: [
     {
+      name: 'legacy_id',
+      type: 'number',
+      unique: true,
+      admin: {
+        description: 'Original ID from Vacatia database',
+      },
+    },
+    {
       name: 'name',
       type: 'text',
       required: true,
@@ -24,37 +32,98 @@ const Properties: CollectionConfig = {
       unique: true,
     },
     {
-      name: 'region',
-      type: 'relationship',
-      relationTo: 'regions',
-      required: false,
-    },
-    {
-      name: 'address',
+      name: 'tagline',
       type: 'text',
       required: false,
+      admin: {
+        description: 'Marketing tagline',
+      },
     },
     {
-      name: 'latitude',
-      type: 'number',
+      name: 'description',
+      type: 'richText',
       required: false,
     },
     {
-      name: 'longitude',
-      type: 'number',
+      name: 'location',
+      type: 'group',
+      fields: [
+        {
+          name: 'address',
+          type: 'text',
+        },
+        {
+          name: 'city',
+          type: 'text',
+        },
+        {
+          name: 'state',
+          type: 'text',
+        },
+        {
+          name: 'postal_code',
+          type: 'text',
+        },
+        {
+          name: 'latitude',
+          type: 'number',
+        },
+        {
+          name: 'longitude',
+          type: 'number',
+        },
+      ],
+    },
+    {
+      name: 'destination',
+      type: 'relationship',
+      relationTo: 'destinations',
+      required: false,
+    },
+    {
+      name: 'amenities',
+      type: 'relationship',
+      relationTo: 'amenities',
+      hasMany: true,
       required: false,
     },
     {
       name: 'star_rating',
       type: 'number',
       required: false,
-      min: 1,
+      min: 0,
       max: 5,
     },
     {
-      name: 'description',
-      type: 'richText',
-      required: false,
+      name: 'rental',
+      type: 'group',
+      fields: [
+        {
+          name: 'enabled',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+        {
+          name: 'lowest_price',
+          type: 'number',
+          required: false,
+        },
+        {
+          name: 'check_in_time',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'check_out_time',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'pets_allowed',
+          type: 'checkbox',
+          defaultValue: false,
+        },
+      ],
     },
   ],
 }

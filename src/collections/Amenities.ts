@@ -13,32 +13,45 @@ const Amenities: CollectionConfig = {
   },
   fields: [
     {
+      name: 'legacy_id',
+      type: 'number',
+      admin: {
+        description: 'Original ID from Vacatia database',
+      },
+    },
+    {
       name: 'name',
       type: 'text',
       required: true,
       unique: true,
     },
     {
-      name: 'type',
-      type: 'select',
-      options: [
-        { label: 'Free WiFi', value: 'freeWifi' },
-        { label: 'Free Parking', value: 'freeParking' },
-        { label: 'Free Breakfast', value: 'freeBreakfast' },
-        { label: 'Pool', value: 'pool' },
-        { label: 'Spa', value: 'spa' },
-        { label: 'Fitness Center', value: 'fitnessCenter' },
-        { label: 'Golf', value: 'golf' },
-        { label: 'Casino', value: 'casino' },
-        { label: 'Beach', value: 'beach' },
-        { label: 'Restaurant', value: 'restaurant' },
-      ],
-      required: false,
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
     },
     {
-      name: 'description',
-      type: 'textarea',
-      required: false,
+      name: 'category',
+      type: 'select',
+      options: [
+        { label: 'Pool & Spa', value: 'pool' },
+        { label: 'Kitchen & Dining', value: 'kitchen' },
+        { label: 'WiFi & Tech', value: 'wifi' },
+        { label: 'Parking', value: 'parking' },
+        { label: 'Accessibility', value: 'accessibility' },
+        { label: 'Entertainment', value: 'entertainment' },
+        { label: 'Fitness & Sports', value: 'fitness' },
+        { label: 'Other', value: 'other' },
+      ],
+    },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Show as featured amenity',
+      },
     },
   ],
 }

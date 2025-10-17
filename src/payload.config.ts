@@ -4,12 +4,11 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 import Users from './collections/Users'
-import Regions from './collections/Regions'
+import Destinations from './collections/Destinations'
 import Properties from './collections/Properties'
 import Amenities from './collections/Amenities'
-import POIs from './collections/POIs'
-import Events from './collections/Events'
-import ProviderMappings from './collections/ProviderMappings'
+import Residences from './collections/Residences'
+import Media from './collections/Media'
 
 const databaseUri = process.env.DATABASE_URI || 'postgresql://search_poc:search_poc_pass@postgres:5432/payload_cms'
 
@@ -19,12 +18,11 @@ export default buildConfig({
   },
   collections: [
     Users,
-    Regions,
+    Destinations,
     Properties,
     Amenities,
-    POIs,
-    Events,
-    ProviderMappings,
+    Residences,
+    Media,
   ],
   cors: [
     'http://localhost:4001',

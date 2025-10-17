@@ -29,7 +29,8 @@
       "Read(//private/tmp/payload/templates/blank/src/app/**)",
       "Bash(xargs:*)",
       "Read(//tmp/payload/templates/blank/**)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(docker logs:*)"
     ],
     "deny": [],
     "ask": []
