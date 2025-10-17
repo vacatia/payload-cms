@@ -2,8 +2,12 @@ import type { CollectionConfig } from 'payload'
 
 const Properties: CollectionConfig = {
   slug: 'properties',
+  defaultLimit: 100,
   admin: {
     useAsTitle: 'name',
+    pagination: {
+      defaultLimit: 100,
+    },
   },
   access: {
     read: () => true,

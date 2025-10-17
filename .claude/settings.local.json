@@ -23,7 +23,8 @@
       "Bash(npm ci:*)",
       "Bash(cat:*)",
       "Bash(curl:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

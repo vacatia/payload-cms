@@ -42,7 +42,21 @@ nextApp.prepare().then(async () => {
       try {
         const { collection } = req.params
         const where = req.query.where ? JSON.parse(req.query.where as string) : {}
-        const result = await payload.find({ collection, where })
+
+        // Extract pagination and filtering parameters from query string
+        const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : undefined
+        const page = req.query.page ? parseInt(req.query.page as string, 10) : undefined
+        const sort = (req.query.sort as string) || undefined
+        const depth = req.query.depth ? parseInt(req.query.depth as string, 10) : undefined
+
+        const result = await payload.find({
+          collection,
+          where,
+          limit,
+          page,
+          sort,
+          depth,
+        })
         res.json(result)
       } catch (err) {
         next(err)
