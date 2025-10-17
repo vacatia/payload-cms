@@ -32,7 +32,11 @@
       "Bash(ls:*)",
       "Bash(docker logs:*)",
       "Bash(docker-compose restart:*)",
-      "Bash(docker exec:*)"
+      "Bash(docker exec:*)",
+      "Read(//tmp/payload-working/src/**)",
+      "Read(//private/tmp/payload-working/**)",
+      "Bash(npm run generate:importmap:*)",
+      "Read(//tmp/payload/templates/with-postgres/src/**)"
     ],
     "deny": [],
     "ask": []

@@ -9,6 +9,7 @@ import Properties from './collections/Properties'
 import Amenities from './collections/Amenities'
 import Residences from './collections/Residences'
 import Media from './collections/Media'
+import { migrations } from './migrations'
 
 const databaseUri = process.env.DATABASE_URI || 'postgresql://search_poc:search_poc_pass@postgres:5432/payload_cms'
 
@@ -38,7 +39,7 @@ export default buildConfig({
     pool: {
       connectionString: databaseUri,
     },
-    push: true,
+    migrationDir: path.resolve(__dirname, 'migrations'),
   }),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key-change-this-in-production',
