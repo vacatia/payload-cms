@@ -38,7 +38,7 @@ export default buildConfig({
     pool: {
       connectionString: databaseUri,
     },
-    push: true, // Auto-create/update database schema
+    push: true,
   }),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key-change-this-in-production',

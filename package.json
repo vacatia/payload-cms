@@ -9,6 +9,8 @@
     "payload": "payload",
     "generate:importmap": "payload generate:importmap",
     "generate:types": "payload generate:types",
+    "migrate:create": "payload migrate:create",
+    "migrate": "payload migrate",
     "seed": "tsx migrations/seed.ts"
   },
   "dependencies": {

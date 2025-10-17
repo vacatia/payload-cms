@@ -30,7 +30,9 @@
       "Bash(xargs:*)",
       "Read(//tmp/payload/templates/blank/**)",
       "Bash(ls:*)",
-      "Bash(docker logs:*)"
+      "Bash(docker logs:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(docker exec:*)"
     ],
     "deny": [],
     "ask": []

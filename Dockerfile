@@ -18,5 +18,5 @@ EXPOSE 3000
 # Set production environment
 ENV NODE_ENV=production
 
-# Start the application using tsx to handle TypeScript and ESM
-CMD ["npx", "tsx", "src/server.ts"]
+# Start using Next.js production server
+CMD ["npm", "start"]
