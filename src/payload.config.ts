@@ -1,30 +1,28 @@
-import { buildConfig } from 'payload'
-import path from 'path'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import path from 'path'
+import { buildConfig } from 'payload'
+import { fileURLToPath } from 'url'
+import sharp from 'sharp'
 
-import Users from './collections/Users'
-import Destinations from './collections/Destinations'
-import Properties from './collections/Properties'
-import Amenities from './collections/Amenities'
-import Residences from './collections/Residences'
-import Media from './collections/Media'
-import { migrations } from './migrations'
+import Users from './collections/Users.js'
+import Destinations from './collections/Destinations.js'
+import Properties from './collections/Properties.js'
+import Amenities from './collections/Amenities.js'
+import Residences from './collections/Residences.js'
+import Media from './collections/Media.js'
 
-const databaseUri = process.env.DATABASE_URI || 'postgresql://search_poc:search_poc_pass@postgres:5432/payload_cms'
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
-    user: 'users',
+    user: Users.slug,
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
   },
-  collections: [
-    Users,
-    Destinations,
-    Properties,
-    Amenities,
-    Residences,
-    Media,
-  ],
+  collections: [Users, Destinations, Properties, Amenities, Residences, Media],
   cors: [
     'http://localhost:4001',
     'http://localhost:8001',
@@ -35,15 +33,15 @@ export default buildConfig({
     'http://localhost:8001',
     'http://localhost:3000',
   ],
-  db: postgresAdapter({
-    pool: {
-      connectionString: databaseUri,
-    },
-    migrationDir: path.resolve(__dirname, 'migrations'),
-  }),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key-change-this-in-production',
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI || '',
+    },
+  }),
+  sharp,
 })

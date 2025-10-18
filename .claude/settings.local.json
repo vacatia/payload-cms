@@ -36,7 +36,10 @@
       "Read(//tmp/payload-working/src/**)",
       "Read(//private/tmp/payload-working/**)",
       "Bash(npm run generate:importmap:*)",
-      "Read(//tmp/payload/templates/with-postgres/src/**)"
+      "Read(//tmp/payload/templates/with-postgres/src/**)",
+      "Bash(/dev/null)",
+      "Read(//Users/julianj/vacatia/test/**)",
+      "Bash(psql:*)"
     ],
     "deny": [],
     "ask": []
