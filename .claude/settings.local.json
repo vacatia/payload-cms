@@ -39,7 +39,8 @@
       "Read(//tmp/payload/templates/with-postgres/src/**)",
       "Bash(/dev/null)",
       "Read(//Users/julianj/vacatia/test/**)",
-      "Bash(psql:*)"
+      "Bash(psql:*)",
+      "Read(//private/tmp/**)"
     ],
     "deny": [],
     "ask": []
